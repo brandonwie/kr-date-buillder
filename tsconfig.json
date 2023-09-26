@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "module": "ES2015",
+    "module": "CommonJS",
     "outDir": "./dist",
-    "declaration": true
+    "declaration": true,
+    "lib": ["ESNext"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

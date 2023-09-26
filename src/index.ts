@@ -197,9 +197,7 @@ class DateFormatterBuilder {
   }
 
   toString() {
-    console.log(this.segments);
     return this.segments.reduce((acc, cur) => {
-      console.log({ acc, cur });
       if (
         cur.includes('dot') ||
         cur.includes('slash') ||
