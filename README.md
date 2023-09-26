@@ -1,5 +1,8 @@
 # Korean Date Builder
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/brandonwie/kr-date-buillder/main/README.md)
+[![ko-kr](https://img.shields.io/badge/lang-ko--kr-green.svg)](https://github.com/brandonwie/kr-date-buillder/main/README.ko-kr.md)
+
 > Generate Korean date string with ease!
 > 한국어 date string을 만들 수 있는 builder입니다.
 
