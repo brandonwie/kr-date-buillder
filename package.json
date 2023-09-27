@@ -4,6 +4,10 @@
   "description": "A date builder for Korean language.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "keywords": [
+    "date",
+    "korean"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
