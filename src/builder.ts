@@ -270,6 +270,14 @@ class DateFormatterBuilder {
       }
     }, '');
   }
+
+  // Override the default toString method to return the formatted date string
+  [Symbol.toPrimitive](hint: any) {
+    if (hint === 'string') {
+      return this.toString();
+    }
+    return this;
+  }
 }
 
 export function builder(date: Date): DateFormatterBuilder {
