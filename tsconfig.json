@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ESNext",
     "module": "CommonJS",
     "outDir": "./dist",
-    "declaration": true,
-    "lib": ["ESNext"]
+    "declaration": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/forbidFunctionPlugin.js"],
   "exclude": ["node_modules"]
 }
