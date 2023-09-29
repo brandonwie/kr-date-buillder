@@ -61,10 +61,12 @@ const Page = () => {
 - concatenate it with other strings
 - use `toString()` or `print()` method
 
-- There are two choices of digit styles.
+### Characteristics
+
+- there are two choices of digit styles.
 - UPPER CASE methods generate a Korean letter at the end of the string value.
 - lower case methods return numbers only.
-- You can use year, month, and day functions once each in a single chain.
+- you can use year, month, and day functions once each in a single chain.
 
 ## Year
 
