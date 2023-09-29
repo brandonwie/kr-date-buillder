@@ -292,6 +292,6 @@ class DateFormatterBuilder {
   }
 }
 
-export function builder(date: Date): DateFormatterBuilder {
+export function krDateBuilder(date: Date): DateFormatterBuilder {
   return new DateFormatterBuilder(date);
 }
