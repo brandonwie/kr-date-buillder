@@ -1,6 +1,6 @@
 import { DateMethod, SeparatorMethod } from './types';
 
-class KrDateBuilder {
+export class KrDateBuilder {
   private date: Date;
   private segments: string[] = [];
   private yearUsed: boolean = false;
@@ -359,8 +359,6 @@ class KrDateBuilder {
 export function krDateBuilder(date: Date): KrDateBuilder {
   return new KrDateBuilder(date);
 }
-
-export default KrDateBuilder;
 
 /**
  * @deprecated since version 1.2.0

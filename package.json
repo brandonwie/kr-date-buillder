@@ -1,6 +1,6 @@
 {
   "name": "kr-date-builder",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A simple date builder for Korean language.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
