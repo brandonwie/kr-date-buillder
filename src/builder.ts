@@ -271,16 +271,19 @@ class DateFormatterBuilder {
     }, '');
   }
 
-  valueOf() {
-    return this.toString();
-  }
-
-  // Override the default toString method to return the formatted date string
-  [Symbol.toPrimitive](hint: any) {
-    if (hint === 'string') {
-      return this.toString();
-    }
-    return this;
+  print() {
+    return this.segments.reduce((acc, cur) => {
+      if (
+        cur.includes('dash') ||
+        cur.includes('dot') ||
+        cur.includes('slash') ||
+        cur.includes('space')
+      ) {
+        return acc;
+      } else {
+        return acc + cur;
+      }
+    }, '');
   }
 }
 

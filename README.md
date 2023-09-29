@@ -36,13 +36,34 @@ import { builder } from 'kr-date-builder';
 // builder receives Date object as an argument
 const d = builder(new Date('2023-01-01'));
 
-d.YYYY().MM().DD().DOW().space(); // 2023년 01월 01일 일요일
-d.yyyy().mm().dd().dot().dow().space(); // 2023.01.01 (일)
+const Page = () => {
+  return <div>{`${d.YYYY().MM().DD().DOW().space()}`}</div>;
+  // 2023년 01월 01일 일요일
+};
+
+const Page = () => {
+  <div>{'date: ' + d.YYYY().MM().DD().DOW().space()}</div>;
+  // date: 2023년 01월 01일 일요일
+};
+
+const Page = () => {
+  <div>{d.YYYY().MM().DD().DOW().space().toString()}</div>;
+  // 2023.01.01 (일)
+};
+
+const Page = () => {
+  <div>{d.YYYY().MM().DD().DOW().space().print()}</div>;
+  // 2023.01.01 (일)
+};
 ```
 
+- use it as a template literal
+- concatenate it with other strings
+- use `toString()` or `print()` method
+
 - There are two choices of digit styles.
-- UPPER CASE generates a Korean letter at the end of the string value.
-- lower case returns numbers only.
+- UPPER CASE methods generate a Korean letter at the end of the string value.
+- lower case methods return numbers only.
 - You can use year, month, and day functions once each in a single chain.
 
 ## Year

@@ -33,16 +33,37 @@
 ```js
 import { builder } from 'kr-date-builder';
 
-// builder는 Date 객체를 인수로 받습니다.
+// builder receives Date object as an argument
 const d = builder(new Date('2023-01-01'));
 
-d.YYYY().MM().DD().space(); // 2023년 01월 01일
-d.yyyy().mm().dd().dot().dow().space(); // 2023.01.01 (일)
+const Page = () => {
+  return <div>{`${d.YYYY().MM().DD().DOW().space()}`}</div>;
+  // 2023년 01월 01일 일요일
+};
+
+const Page = () => {
+  <div>{'날짜: ' + d.YYYY().MM().DD().DOW().space()}</div>;
+  // 날짜: 2023년 01월 01일 일요일
+};
+
+const Page = () => {
+  <div>{d.YYYY().MM().DD().DOW().space().toString()}</div>;
+  // 2023.01.01 (일)
+};
+
+const Page = () => {
+  <div>{d.YYYY().MM().DD().DOW().space().print()}</div>;
+  // 2023.01.01 (일)
+};
 ```
 
+- 템플릿 리터럴로 사용하세요.
+- 다른 문자열과 연결하세요.
+- `toString()` 또는 `print()` 메서드를 사용하세요.
+
 - 두 가지 숫자 자리수 스타일 옵션이 있습니다.
-- 대문자는 문자열 값 끝에 한글로 반환합니다.
-- 소문자는 숫자만 반환합니다.
+- 대문자 메서드는 문자열 값 끝에 한글로 반환합니다.
+- 소문자 메서드는 숫자만 반환합니다.
 - 하나의 체인에서는 연도, 월, 일 함수를 각각 하나씩 사용할 수 있습니다.
 
 ## 연도
