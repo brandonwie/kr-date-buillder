@@ -1,4 +1,6 @@
-class DateFormatterBuilder {
+import { DateMethod, SeparatorMethod } from './types';
+
+class KrDateFormatter {
   private date: Date;
   private segments: string[] = [];
   private yearUsed: boolean = false;
@@ -13,28 +15,28 @@ class DateFormatterBuilder {
   // #region check and set values
   private checkAndSetYearUsed() {
     if (this.yearUsed) {
-      throw new Error("Methods for 'year' can be used only once.");
+      throw new Error("DateMethod for 'year' can be used only once.");
     }
     this.yearUsed = true;
   }
 
   private checkAndSetMonthUsed() {
     if (this.monthUsed) {
-      throw new Error("Methods for 'month' can be used only once.");
+      throw new Error("DateMethod for 'month' can be used only once.");
     }
     this.monthUsed = true;
   }
 
   private checkAndSetDayUsed() {
     if (this.dayUsed) {
-      throw new Error("Methods for 'day' can be used only once.");
+      throw new Error("DateMethod for 'day' can be used only once.");
     }
     this.dayUsed = true;
   }
 
   private checkAndSetDowUsed() {
     if (this.dowUsed) {
-      throw new Error("Methods for 'day of week' can be used only once.");
+      throw new Error("DateMethod for 'day of week' can be used only once.");
     }
     this.dowUsed = true;
   }
@@ -44,73 +46,109 @@ class DateFormatterBuilder {
     return monthOrDay.toString().padStart(2, '0');
   }
 
-  yyyy() {
+  /**
+   * @description [DATE METHOD] add year in number-only, 4-digit format (e.g. 2023)
+   */
+  yyyy(): DateMethod {
     this.checkAndSetYearUsed();
     this.segments.push(this.date.getFullYear().toString());
     return this;
   }
 
-  yy() {
+  /**
+   * @description [DATE METHOD] add year in number-only, 2-digit format (e.g. 23)
+   */
+  yy(): DateMethod {
     this.checkAndSetYearUsed();
     this.segments.push((this.date.getFullYear() % 100).toString());
     return this;
   }
 
-  YYYY() {
+  /**
+   * @description [DATE METHOD] add 4-digit year with Korean character (e.g. 2023년)
+   */
+  YYYY(): DateMethod {
     this.checkAndSetYearUsed();
     this.segments.push(this.date.getFullYear().toString() + '년');
     return this;
   }
 
-  YY() {
+  /**
+   * @description [DATE METHOD] add 2-digit year with Korean character (e.g. 23년)
+   */
+  YY(): DateMethod {
     this.checkAndSetYearUsed();
     this.segments.push((this.date.getFullYear() % 100).toString() + '년');
     return this;
   }
 
-  mm() {
+  /**
+   * @description [DATE METHOD] add month in number-only, 2-digit format (e.g. 01)
+   */
+  mm(): DateMethod {
     this.checkAndSetMonthUsed();
     this.segments.push(this.addLeadingZero(this.date.getMonth() + 1));
     return this;
   }
 
-  m() {
+  /**
+   * @description [DATE METHOD] add month in number-only, single digit format (e.g. 1)
+   */
+  m(): DateMethod {
     this.checkAndSetMonthUsed();
     this.segments.push((this.date.getMonth() + 1).toString());
     return this;
   }
 
-  MM() {
+  /**
+   * @description [DATE METHOD] add month in number-only, 2-digit format with Korean character (e.g. 01월)
+   */
+  MM(): DateMethod {
     this.checkAndSetMonthUsed();
     this.segments.push(this.addLeadingZero(this.date.getMonth() + 1) + '월');
     return this;
   }
 
-  M() {
+  /**
+   * @description [DATE METHOD] add month in number-only, single digit format with Korean character (e.g. 1월)
+   */
+  M(): DateMethod {
     this.checkAndSetMonthUsed();
     this.segments.push((this.date.getMonth() + 1).toString() + '월');
     return this;
   }
 
-  dd() {
+  /**
+   * @description [DATE METHOD] add day in number-only, 2-digit format (e.g. 01일)
+   */
+  dd(): DateMethod {
     this.checkAndSetDayUsed();
     this.segments.push(this.addLeadingZero(this.date.getDate()));
     return this;
   }
 
-  d() {
+  /**
+   * @description [DATE METHOD] add day in number-only, single digit format (e.g. 1일)
+   */
+  d(): DateMethod {
     this.checkAndSetDayUsed();
     this.segments.push(this.date.getDate().toString());
     return this;
   }
 
-  DD() {
+  /**
+   * @description [DATE METHOD] add day in number-only, 2-digit format with Korean character (e.g. 01일)
+   */
+  DD(): DateMethod {
     this.checkAndSetDayUsed();
     this.segments.push(this.addLeadingZero(this.date.getDate()) + '일');
     return this;
   }
 
-  D() {
+  /**
+   * @description [DATE METHOD] add day in number-only, single digit format with Korean character (e.g. 1일)
+   */
+  D(): DateMethod {
     // 9일
     this.checkAndSetDayUsed();
     this.segments.push(this.date.getDate().toString() + '일');
@@ -152,7 +190,11 @@ class DateFormatterBuilder {
   //   }
   // #endregion time
 
-  DOW(options?: { paren: boolean }) {
+  /**
+   * @description [DATE METHOD] add day of week in long form without parentheses by default
+   * e.g. 월요일
+   */
+  DOW(options?: { paren: boolean }): DateMethod {
     this.checkAndSetDowUsed();
     const days = [
       '일요일',
@@ -172,7 +214,11 @@ class DateFormatterBuilder {
     return this;
   }
 
-  dow(options?: { paren: boolean }) {
+  /**
+   * @description [DATE METHOD] add day of week in short form with parentheses by default
+   * e.g. (월)
+   */
+  dow(options?: { paren: boolean }): DateMethod {
     this.checkAndSetDowUsed();
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     const dayName = days[this.date.getDay()];
@@ -183,7 +229,10 @@ class DateFormatterBuilder {
 
   // #region separators
 
-  dash() {
+  /**
+   * @description [SEPARATOR] add dash separators in front of return values of each date methods ahead, starts from the last separator if exists
+   */
+  dash(): SeparatorMethod {
     const i1 = this.segments.lastIndexOf('dash');
     const i2 = this.segments.lastIndexOf('dot');
     const i3 = this.segments.lastIndexOf('slash');
@@ -202,7 +251,10 @@ class DateFormatterBuilder {
     return this;
   }
 
-  dot() {
+  /**
+   * @description [SEPARATOR] add dot separators in front of return values of each date methods ahead, starts from the last separator if exists
+   */
+  dot(): SeparatorMethod {
     const i1 = this.segments.lastIndexOf('dash');
     const i2 = this.segments.lastIndexOf('dot');
     const i3 = this.segments.lastIndexOf('slash');
@@ -221,7 +273,10 @@ class DateFormatterBuilder {
     return this;
   }
 
-  space() {
+  /**
+   * @description [SEPARATOR] add space separators in front of return values of each date methods ahead, starts from the last separator if exists
+   */
+  space(): SeparatorMethod {
     const i1 = this.segments.lastIndexOf('dash');
     const i2 = this.segments.lastIndexOf('dot');
     const i3 = this.segments.lastIndexOf('slash');
@@ -240,7 +295,10 @@ class DateFormatterBuilder {
     return this;
   }
 
-  slash() {
+  /**
+   * @description [SEPARATOR] add slash separators in front of return values of each date methods ahead, starts from the last separator if exists
+   */
+  slash(): SeparatorMethod {
     const i1 = this.segments.lastIndexOf('dash');
     const i2 = this.segments.lastIndexOf('dot');
     const i3 = this.segments.lastIndexOf('slash');
@@ -261,6 +319,9 @@ class DateFormatterBuilder {
 
   // #endregion separators
 
+  /**
+   * @description returns formatted date string
+   */
   toString() {
     return this.segments.reduce((acc, cur) => {
       if (
@@ -276,6 +337,9 @@ class DateFormatterBuilder {
     }, '');
   }
 
+  /**
+   * @description returns formatted date string
+   */
   print() {
     return this.segments.reduce((acc, cur) => {
       if (
@@ -292,6 +356,15 @@ class DateFormatterBuilder {
   }
 }
 
-export function krDateBuilder(date: Date): DateFormatterBuilder {
-  return new DateFormatterBuilder(date);
+export function krDateBuilder(date: Date): KrDateFormatter {
+  return new KrDateFormatter(date);
+}
+
+export default KrDateFormatter;
+
+/**
+ * @deprecated since version 1.2.0
+ */
+export function builder(date: Date): KrDateFormatter {
+  return new KrDateFormatter(date);
 }

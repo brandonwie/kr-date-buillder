@@ -1,2 +1,2 @@
-import { krDateBuilder } from './builder';
-export { krDateBuilder };
+import { krDateBuilder, builder } from './builder';
+export { krDateBuilder, builder };
