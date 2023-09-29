@@ -9,6 +9,7 @@ class DateFormatterBuilder {
   constructor(date: Date) {
     this.date = date;
   }
+
   // #region check and set values
   private checkAndSetYearUsed() {
     if (this.yearUsed) {
@@ -115,7 +116,8 @@ class DateFormatterBuilder {
     this.segments.push(this.date.getDate().toString() + '일');
     return this;
   }
-  // #region time
+
+  // #region time work later when minute expression is figured out
   //   hm() {
   //     // 9:8
   //     this.segments.push(this.date.getHours().toString());
@@ -182,11 +184,12 @@ class DateFormatterBuilder {
   // #region separators
 
   dash() {
-    const i1 = this.segments.lastIndexOf('dot');
-    const i2 = this.segments.lastIndexOf('slash');
-    const i3 = this.segments.lastIndexOf('space');
+    const i1 = this.segments.lastIndexOf('dash');
+    const i2 = this.segments.lastIndexOf('dot');
+    const i3 = this.segments.lastIndexOf('slash');
+    const i4 = this.segments.lastIndexOf('space');
 
-    const lastSeparatorIndex = Math.max(i1, i2, i3);
+    const lastSeparatorIndex = Math.max(i1, i2, i3, i4);
     let startIndex = 0;
     if (lastSeparatorIndex !== -1) {
       startIndex = lastSeparatorIndex;
@@ -200,11 +203,12 @@ class DateFormatterBuilder {
   }
 
   dot() {
-    const i1 = this.segments.lastIndexOf('dot');
-    const i2 = this.segments.lastIndexOf('slash');
-    const i3 = this.segments.lastIndexOf('space');
+    const i1 = this.segments.lastIndexOf('dash');
+    const i2 = this.segments.lastIndexOf('dot');
+    const i3 = this.segments.lastIndexOf('slash');
+    const i4 = this.segments.lastIndexOf('space');
 
-    const lastSeparatorIndex = Math.max(i1, i2, i3);
+    const lastSeparatorIndex = Math.max(i1, i2, i3, i4);
     let startIndex = 0;
     if (lastSeparatorIndex !== -1) {
       startIndex = lastSeparatorIndex;
@@ -218,11 +222,12 @@ class DateFormatterBuilder {
   }
 
   space() {
-    const i1 = this.segments.lastIndexOf('dot');
-    const i2 = this.segments.lastIndexOf('slash');
-    const i3 = this.segments.lastIndexOf('space');
+    const i1 = this.segments.lastIndexOf('dash');
+    const i2 = this.segments.lastIndexOf('dot');
+    const i3 = this.segments.lastIndexOf('slash');
+    const i4 = this.segments.lastIndexOf('space');
 
-    const lastSeparatorIndex = Math.max(i1, i2, i3);
+    const lastSeparatorIndex = Math.max(i1, i2, i3, i4);
     let startIndex = 0;
     if (lastSeparatorIndex !== -1) {
       startIndex = lastSeparatorIndex;
@@ -236,12 +241,12 @@ class DateFormatterBuilder {
   }
 
   slash() {
-    // separator가 발견된 지점부터 format
-    const i1 = this.segments.lastIndexOf('dot');
-    const i2 = this.segments.lastIndexOf('slash');
-    const i3 = this.segments.lastIndexOf('space');
+    const i1 = this.segments.lastIndexOf('dash');
+    const i2 = this.segments.lastIndexOf('dot');
+    const i3 = this.segments.lastIndexOf('slash');
+    const i4 = this.segments.lastIndexOf('space');
 
-    const lastSeparatorIndex = Math.max(i1, i2, i3);
+    const lastSeparatorIndex = Math.max(i1, i2, i3, i4);
     let startIndex = 0;
     if (lastSeparatorIndex !== -1) {
       startIndex = lastSeparatorIndex;

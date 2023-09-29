@@ -131,7 +131,8 @@ d.yyyy().mm().dd().slash(); // 2023/01/01
 d.yyyy().mm().dd().space(); // 2023 01 01
 ```
 
-- the separators affects year, month, day functions that are called before it
+- the separators are added in front of the values of the year, month, day functions that are called before it
+- the separators doesn't effect first function in the chain
 
 ```js
 d.mm().dd().yyyy().slash().DOW().space(); // 01/01/2023 일요일
