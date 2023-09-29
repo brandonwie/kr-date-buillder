@@ -1,4 +1,4 @@
-import KrDateFormatter from './builder';
+import KrDateBuilder from './builder';
 
-export type DateMethod = KrDateFormatter;
-export type SeparatorMethod = KrDateFormatter;
+export type DateMethod = KrDateBuilder;
+export type SeparatorMethod = KrDateBuilder;

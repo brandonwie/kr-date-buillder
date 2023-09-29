@@ -31,10 +31,10 @@
 ## How to use
 
 ```js
-import { builder } from 'kr-date-builder';
+import { krDateBuilder } from 'kr-date-builder';
 
 // builder receives Date object as an argument
-const d = builder(new Date('2023-01-01'));
+const d = krDateBuilder(new Date('2023-01-01'));
 
 const Page = () => {
   return <div>{`${d.YYYY().MM().DD().DOW().space()}`}</div>;
