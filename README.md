@@ -42,17 +42,17 @@ const Page = () => {
 };
 
 const Page = () => {
-  <div>{'date: ' + d.YYYY().MM().DD().DOW().space()}</div>;
+  return <div>{'date: ' + d.YYYY().MM().DD().DOW().space()}</div>;
   // date: 2023년 01월 01일 일요일
 };
 
 const Page = () => {
-  <div>{d.YYYY().MM().DD().dot().DOW().space().toString()}</div>;
+  return <div>{d.YYYY().MM().DD().dot().DOW().space().toString()}</div>;
   // 2023.01.01 (일)
 };
 
 const Page = () => {
-  <div>{d.YYYY().MM().DD().dot().DOW().space().print()}</div>;
+  return <div>{d.YYYY().MM().DD().dot().DOW().space().print()}</div>;
   // 2023.01.01 (일)
 };
 ```
